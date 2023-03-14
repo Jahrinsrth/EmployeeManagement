@@ -1,10 +1,8 @@
 ﻿using EmployeeManagement.DTO;
 using EmployeeManagement.Entities;
 using EmployeeManagement.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Services
 {
@@ -28,7 +26,7 @@ namespace EmployeeManagement.Services
                 foreach (Department entity in departments)
                 {
                     DepartmentDTO departmentDTO = new DepartmentDTO();
-                    
+
                     departmentDTO.DepartmentId = entity.DepartmentId;
                     departmentDTO.DepartmentName = entity.DepartmentName;
                     departmentDTOs.Add(departmentDTO);
@@ -59,7 +57,7 @@ namespace EmployeeManagement.Services
 
             department.DepartmentId = departmentDTO.DepartmentId;
             department.DepartmentName = departmentDTO.DepartmentName;
-            department =  _departmentRepository.AddDepartment(department);
+            department = _departmentRepository.AddDepartment(department);
 
             return department;
         }

@@ -1,10 +1,8 @@
-﻿using EmployeeManagement.DTO;
-using EmployeeManagement.Entities;
+﻿using EmployeeManagement.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Repositories
 {
@@ -12,7 +10,7 @@ namespace EmployeeManagement.Repositories
     {
         private readonly EmployeeDbContext _dbContext;
 
-        public EmployeeRepository(EmployeeDbContext dbContext) 
+        public EmployeeRepository(EmployeeDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -24,7 +22,7 @@ namespace EmployeeManagement.Repositories
                 Employee entity = _dbContext.Employees.Include(d => d.Department).FirstOrDefault(e => e.EmployeeId == employeeId);
                 return entity;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception();
             }
@@ -39,7 +37,7 @@ namespace EmployeeManagement.Repositories
                 employees = _dbContext.Employees.Include(d => d.Department).ToList();
                 return employees;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception();
             }
@@ -53,7 +51,7 @@ namespace EmployeeManagement.Repositories
                 _dbContext.SaveChanges();
                 return entity;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception();
             }
@@ -67,7 +65,7 @@ namespace EmployeeManagement.Repositories
                 _dbContext.SaveChanges();
                 return entity;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception();
             }
@@ -81,18 +79,17 @@ namespace EmployeeManagement.Repositories
                 _dbContext.SaveChanges();
                 return entity.EmployeeId;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception();
             }
         }
 
-        public Department AddDepartment(Department department) 
+        public Department AddDepartment(Department department)
         {
             _dbContext.Departments.Add(department);
             _dbContext.SaveChanges();
             return department;
         }
-
     }
 }

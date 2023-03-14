@@ -4,7 +4,6 @@ using EmployeeManagement.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Services
 {
@@ -12,7 +11,7 @@ namespace EmployeeManagement.Services
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository) 
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
@@ -23,7 +22,7 @@ namespace EmployeeManagement.Services
 
             List<EmployeeDTO> employeeDTOs = new List<EmployeeDTO>();
 
-            if (employees != null & employees.Count > 0) 
+            if (employees != null & employees.Count > 0)
             {
                 foreach (Employee entity in employees)
                 {
@@ -46,11 +45,11 @@ namespace EmployeeManagement.Services
 
         public EmployeeDTO GetEmployee(int employeeId)
         {
-           Employee entity =  _employeeRepository.GetEmployee(employeeId);
+            Employee entity = _employeeRepository.GetEmployee(employeeId);
 
-           EmployeeDTO employeeDTO = new EmployeeDTO();
+            EmployeeDTO employeeDTO = new EmployeeDTO();
 
-            if (entity != null) 
+            if (entity != null)
             {
                 employeeDTO.EmployeeId = entity.EmployeeId;
                 employeeDTO.FirstName = entity.FirstName;
@@ -62,7 +61,7 @@ namespace EmployeeManagement.Services
                 employeeDTO.Department = entity.Department.DepartmentName;
             }
 
-           return employeeDTO;
+            return employeeDTO;
         }
 
         public Employee AddEmployee(EmployeeDTO employeeDTO)
@@ -84,10 +83,10 @@ namespace EmployeeManagement.Services
         public int RemoveEmployee(int employeeId)
         {
             Employee entity = _employeeRepository.GetEmployee(employeeId);
-            return _employeeRepository.RemoveEmployee(entity);           
+            return _employeeRepository.RemoveEmployee(entity);
         }
 
-        public Employee UpdateEmployee(int employeeId,EmployeeDTO employeeDTO)
+        public Employee UpdateEmployee(int employeeId, EmployeeDTO employeeDTO)
         {
             Employee entity = _employeeRepository.GetEmployee(employeeId);
 

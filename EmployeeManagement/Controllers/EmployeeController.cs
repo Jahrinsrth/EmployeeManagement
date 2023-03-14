@@ -1,12 +1,8 @@
 ﻿using EmployeeManagement.DTO;
 using EmployeeManagement.Entities;
 using EmployeeManagement.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
@@ -15,7 +11,7 @@ namespace EmployeeManagement.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService) 
+        public EmployeeController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
@@ -24,9 +20,9 @@ namespace EmployeeManagement.Controllers
         [Route("{id}")]
         public IActionResult GetEmployee([FromRoute] int id)
         {
-            EmployeeDTO employeeDTO =  _employeeService.GetEmployee(id);
+            EmployeeDTO employeeDTO = _employeeService.GetEmployee(id);
 
-            if (employeeDTO ==  null) 
+            if (employeeDTO == null)
             {
                 return NotFound($"No employees found for this employeeId {id}");
             }
@@ -35,7 +31,7 @@ namespace EmployeeManagement.Controllers
 
         [HttpGet]
         [Route("all")]
-        public IActionResult GetAllEmployees() 
+        public IActionResult GetAllEmployees()
         {
             List<EmployeeDTO> employeeDTOs = _employeeService.GetAllEmployees();
 
@@ -85,6 +81,5 @@ namespace EmployeeManagement.Controllers
             }
             return Ok($"Removed Employee Id {employeeId}");
         }
-
     }
 }

@@ -1,12 +1,8 @@
 ﻿using EmployeeManagement.DTO;
 using EmployeeManagement.Entities;
 using EmployeeManagement.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
@@ -59,12 +55,11 @@ namespace EmployeeManagement.Controllers
             return Ok($"Inserted department Id - {department.DepartmentId}");
         }
 
-
         [HttpPut]
         [Route("modify/{id}")]
         public IActionResult UpdateDepartment([FromRoute] int id, [FromBody] DepartmentDTO departmentDTO)
         {
-            Department department = _departmentService.UpdateDepartment(id,departmentDTO);
+            Department department = _departmentService.UpdateDepartment(id, departmentDTO);
 
             if (department == null)
             {
