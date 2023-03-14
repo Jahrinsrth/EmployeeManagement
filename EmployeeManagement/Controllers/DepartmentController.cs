@@ -35,7 +35,7 @@ namespace EmployeeManagement.Controllers
         {
             List<DepartmentDTO> departmentDTOs = _departmentService.GetAllDepartment();
 
-            if (departmentDTOs == null && departmentDTOs.Count > 0)
+            if (departmentDTOs == null && departmentDTOs.Count < 0)
             {
                 return NotFound("Department List is empty.. Please add a new department");
             }

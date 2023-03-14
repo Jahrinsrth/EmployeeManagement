@@ -35,7 +35,7 @@ namespace EmployeeManagement.Controllers
         {
             List<EmployeeDTO> employeeDTOs = _employeeService.GetAllEmployees();
 
-            if (employeeDTOs == null && employeeDTOs.Count > 0)
+            if (employeeDTOs == null && employeeDTOs.Count < 0)
             {
                 return NotFound("Employee List is empty.. Please add a new employee");
             }
