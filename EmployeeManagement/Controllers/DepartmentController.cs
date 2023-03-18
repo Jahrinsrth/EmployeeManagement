@@ -44,7 +44,7 @@ namespace EmployeeManagement.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IActionResult AddDepartmet([FromBody] DepartmentDTO departmentDTO)
+        public IActionResult AddDepartment([FromBody] DepartmentDTO departmentDTO)
         {
             Department department = _departmentService.AddDepartment(departmentDTO);
 
@@ -61,7 +61,7 @@ namespace EmployeeManagement.Controllers
         {
             Department department = _departmentService.UpdateDepartment(id, departmentDTO);
 
-            if (department == null)
+            if (department.DepartmentId == 0)
             {
                 return NotFound($"No departmet found for this departmentId {id} to update the record");
             }
@@ -72,9 +72,9 @@ namespace EmployeeManagement.Controllers
         [Route("remove/{id}")]
         public IActionResult DeleteDepartment([FromRoute] int id)
         {
-            int departmentId = _departmentService.RemoveDepartment(id);
+            string departmentId = _departmentService.RemoveDepartment(id);
 
-            if (departmentId < 0)
+            if (departmentId == null)
             {
                 return NotFound($"No department found for this departmentId {id} to remove the record");
             }

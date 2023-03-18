@@ -10,6 +10,5 @@ namespace EmployeeManagement.Repositories
         Department AddDepartment(Department department);
         Department UpdateDepartment(Department department);
         int RemoveDepartment(Department department);
-
     }
 }

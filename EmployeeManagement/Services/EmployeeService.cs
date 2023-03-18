@@ -83,6 +83,7 @@ namespace EmployeeManagement.Services
         public string RemoveEmployee(int employeeId)
         {
             Employee entity = _employeeRepository.GetEmployee(employeeId);
+
             if (entity != null)
             {
                 return _employeeRepository.RemoveEmployee(entity).ToString();
@@ -91,22 +92,29 @@ namespace EmployeeManagement.Services
             {
                 return null;
             }
-
         }
 
         public Employee UpdateEmployee(int employeeId, EmployeeDTO employeeDTO)
         {
             Employee entity = _employeeRepository.GetEmployee(employeeId);
 
-            entity.FirstName = employeeDTO.FirstName;
-            entity.LastName = employeeDTO.LastName;
-            entity.Email = employeeDTO.Email;
-            entity.DateOfBirth = (DateTime)employeeDTO.DatetOfBirth;
-            entity.Salary = (double)employeeDTO.Salary;
-            entity.DepartmentId = (int)employeeDTO.DepartmentId;
+            if (entity != null)
+            {
+                entity.FirstName = employeeDTO.FirstName;
+                entity.LastName = employeeDTO.LastName;
+                entity.Email = employeeDTO.Email;
+                entity.DateOfBirth = (DateTime)employeeDTO.DatetOfBirth;
+                entity.Salary = (double)employeeDTO.Salary;
+                entity.DepartmentId = (int)employeeDTO.DepartmentId;
 
-            _employeeRepository.UpdateEmployee(entity);
-            return entity;
+                _employeeRepository.UpdateEmployee(entity);
+                return entity;
+            }
+            else 
+            {
+                return new Employee();
+            }
+
         }
     }
 }

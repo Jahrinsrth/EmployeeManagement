@@ -10,6 +10,6 @@ namespace EmployeeManagement.Services
         DepartmentDTO GetDepartment(int departmentId);
         Department AddDepartment(DepartmentDTO departmentDTO);
         Department UpdateDepartment(int departmentId, DepartmentDTO departmentDTO);
-        int RemoveDepartment(int departmentId);
+        string RemoveDepartment(int departmentId);
     }
 }

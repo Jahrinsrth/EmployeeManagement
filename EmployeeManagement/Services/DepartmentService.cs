@@ -66,16 +66,32 @@ namespace EmployeeManagement.Services
         {
             Department entity = _departmentRepository.GetDepartment(departmentId);
 
-            entity.DepartmentName = departmentDTO.DepartmentName;
-            _departmentRepository.UpdateDepartment(entity);
-            return entity;
+            if (entity != null)
+            {
+                entity.DepartmentName = departmentDTO.DepartmentName;
+                _departmentRepository.UpdateDepartment(entity);
+                return entity;
+            }
+            else 
+            {
+                return new Department();
+            }
+
         }
 
-        public int RemoveDepartment(int departmentId)
+        public string RemoveDepartment(int departmentId)
         {
             Department entity = _departmentRepository.GetDepartment(departmentId);
-            return _departmentRepository.RemoveDepartment(entity);
-        }
 
+            if (entity != null)
+            {
+                return _departmentRepository.RemoveDepartment(entity).ToString();
+            }
+            else 
+            {
+                return null;
+            }
+            
+        }
     }
 }

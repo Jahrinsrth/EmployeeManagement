@@ -15,7 +15,9 @@ namespace EmployeeManagement.Entities
         [Required]
         public string LastName { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
+        [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
         public double Salary { get; set; }

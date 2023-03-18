@@ -23,7 +23,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -38,7 +38,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -52,7 +52,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -66,7 +66,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -80,7 +80,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
     }

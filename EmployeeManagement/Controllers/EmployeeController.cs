@@ -62,7 +62,7 @@ namespace EmployeeManagement.Controllers
         {
             Employee employee = _employeeService.UpdateEmployee(id, employeeDTO);
 
-            if (employee == null)
+            if (employee.EmployeeId == 0)
             {
                 return NotFound($"No employees found for this employeeId {id} to update the record");
             }

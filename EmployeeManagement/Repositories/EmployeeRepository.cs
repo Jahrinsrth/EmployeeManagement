@@ -24,7 +24,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -39,7 +39,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -53,7 +53,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -67,7 +67,7 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -81,15 +81,8 @@ namespace EmployeeManagement.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw;
             }
-        }
-
-        public Department AddDepartment(Department department)
-        {
-            _dbContext.Departments.Add(department);
-            _dbContext.SaveChanges();
-            return department;
         }
     }
 }
