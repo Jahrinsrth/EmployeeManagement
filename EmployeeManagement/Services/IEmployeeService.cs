@@ -10,6 +10,6 @@ namespace EmployeeManagement.Services
         EmployeeDTO GetEmployee(int EmployeeId);
         Employee AddEmployee(EmployeeDTO employeeDTO);
         Employee UpdateEmployee(int EmployeeId, EmployeeDTO employeeDTO);
-        int RemoveEmployee(int EmployeeId);
+        string RemoveEmployee(int EmployeeId);
     }
 }

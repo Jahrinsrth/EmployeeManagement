@@ -73,9 +73,9 @@ namespace EmployeeManagement.Controllers
         [Route("remove/{id}")]
         public IActionResult DeleteEmployee([FromRoute] int id)
         {
-            int employeeId = _employeeService.RemoveEmployee(id);
+            string employeeId = _employeeService.RemoveEmployee(id);
 
-            if (employeeId < 0)
+            if (employeeId ==  null)
             {
                 return NotFound($"No employees found for this employeeId {id} to remove the record");
             }

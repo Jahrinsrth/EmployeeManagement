@@ -80,10 +80,18 @@ namespace EmployeeManagement.Services
             return entity;
         }
 
-        public int RemoveEmployee(int employeeId)
+        public string RemoveEmployee(int employeeId)
         {
             Employee entity = _employeeRepository.GetEmployee(employeeId);
-            return _employeeRepository.RemoveEmployee(entity);
+            if (entity != null)
+            {
+                return _employeeRepository.RemoveEmployee(entity).ToString();
+            }
+            else 
+            {
+                return null;
+            }
+
         }
 
         public Employee UpdateEmployee(int employeeId, EmployeeDTO employeeDTO)
