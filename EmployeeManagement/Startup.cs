@@ -38,6 +38,15 @@ namespace EmployeeManagement
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 
             services.AddControllers();
+
+            // enableing cors - cross origin
+            services.AddCors(options => 
+            {
+                options.AddDefaultPolicy(builder => 
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +60,9 @@ namespace EmployeeManagement
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // adding cors middleware
+            app.UseCors();
 
             app.UseAuthorization();
 

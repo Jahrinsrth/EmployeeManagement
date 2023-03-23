@@ -31,10 +31,11 @@ namespace EmployeeManagement.Services
                     employeeDTO.FirstName = entity.FirstName;
                     employeeDTO.LastName = entity.LastName;
                     employeeDTO.Email = entity.Email;
-                    employeeDTO.DatetOfBirth = entity.DateOfBirth;
+                    employeeDTO.Dob = entity.DateOfBirth.ToShortDateString();
                     employeeDTO.Salary = entity.Salary;
                     employeeDTO.DepartmentId = entity.Department.DepartmentId;
                     employeeDTO.Department = entity.Department.DepartmentName;
+                    employeeDTO.DatetOfBirth = entity.DateOfBirth;
 
                     employeeDTOs.Add(employeeDTO);
                 }
@@ -59,6 +60,7 @@ namespace EmployeeManagement.Services
                 employeeDTO.Salary = entity.Salary;
                 employeeDTO.DepartmentId = entity.Department.DepartmentId;
                 employeeDTO.Department = entity.Department.DepartmentName;
+                employeeDTO.Dob = entity.DateOfBirth.ToShortDateString();
             }
 
             return employeeDTO;

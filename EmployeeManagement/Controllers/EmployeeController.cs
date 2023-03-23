@@ -20,13 +20,19 @@ namespace EmployeeManagement.Controllers
         [Route("{id}")]
         public IActionResult GetEmployee([FromRoute] int id)
         {
-            EmployeeDTO employeeDTO = _employeeService.GetEmployee(id);
-
-            if (employeeDTO == null)
+            if (id > 0)
             {
-                return NotFound($"No employees found for this employeeId {id}");
+                EmployeeDTO employeeDTO = _employeeService.GetEmployee(id);
+                if (employeeDTO == null)
+                {
+                    return NotFound($"No employees found for this employeeId {id}");
+                }
+                return Ok(employeeDTO);
             }
-            return Ok(employeeDTO);
+            else 
+            {
+                return BadRequest($"Invalid employeeId - {id}");
+            } 
         }
 
         [HttpGet]
@@ -37,7 +43,7 @@ namespace EmployeeManagement.Controllers
 
             if (employeeDTOs == null && employeeDTOs.Count < 0)
             {
-                return NotFound("Employee List is empty.. Please add a new employee");
+                return NotFound("Employee List is empty... Please add a new employee");
             }
             return Ok(employeeDTOs);
         }
@@ -46,40 +52,61 @@ namespace EmployeeManagement.Controllers
         [Route("create")]
         public IActionResult UpdateEmployee([FromBody] EmployeeDTO employeeDTO)
         {
-            Employee employee = _employeeService.AddEmployee(employeeDTO);
-
-            if (employee == null)
+            if (employeeDTO != null)
             {
-                return BadRequest("employee not added");
-            }
-            return Ok($"Inserted employee Id - {employee.EmployeeId}");
-        }
+                Employee employee = _employeeService.AddEmployee(employeeDTO);
 
+                if (employee == null)
+                {
+                    return BadRequest("employee not added");
+                }
+                return Ok($"Inserted employee Id - {employee.EmployeeId}");
+            }
+            else 
+            {
+                return BadRequest($"Invalid Payload - {employeeDTO.ToString()}");
+            }
+        }
 
         [HttpPut]
         [Route("modify/{id}")]
         public IActionResult UpdateEmployee([FromRoute] int id, [FromBody] EmployeeDTO employeeDTO)
         {
-            Employee employee = _employeeService.UpdateEmployee(id, employeeDTO);
-
-            if (employee.EmployeeId == 0)
+            if (id > 0)
             {
-                return NotFound($"No employees found for this employeeId {id} to update the record");
+                Employee employee = _employeeService.UpdateEmployee(id, employeeDTO);
+
+                if (employee.EmployeeId == 0)
+                {
+                    return NotFound($"No employees found for this employeeId {id} to update the record");
+                }
+
+                return Ok($"Updated employee - {employee.EmployeeId}");
             }
-            return Ok($"Updated employee - {employee.EmployeeId}");
+            else 
+            {
+                return BadRequest($"Invalid employeeId - {id}");
+            }          
         }
 
         [HttpDelete]
         [Route("remove/{id}")]
         public IActionResult DeleteEmployee([FromRoute] int id)
         {
-            string employeeId = _employeeService.RemoveEmployee(id);
-
-            if (employeeId ==  null)
+            if (id > 0) 
             {
-                return NotFound($"No employees found for this employeeId {id} to remove the record");
+                string employeeId = _employeeService.RemoveEmployee(id);
+
+                if (employeeId == null)
+                {
+                    return NotFound($"No employees found for this employeeId {id} to remove the record");
+                }
+                return Ok($"Removed employeeId - {id}");
             }
-            return Ok($"Removed Employee Id {employeeId}");
+            else    
+            {
+                return BadRequest($"Invalid employeeId - {id}");
+            }
         }
     }
 }
