@@ -36,6 +36,10 @@ namespace EmployeeManagement.Repositories
 
                 employees = _dbContext.Employees.Include(d => d.Department).ToList();
                 return employees;
+
+                //employees = _dbContext.Employees.FromSqlRaw("spGetAllEmployee").ToList();
+                //return employees;
+
             }
             catch (Exception ex)
             {
