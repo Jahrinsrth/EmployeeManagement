@@ -108,5 +108,23 @@ namespace EmployeeManagement.Controllers
                 return BadRequest($"Invalid employeeId - {id}");
             }
         }
+
+        #region application launching 
+        [HttpGet]
+        [Route("application")]
+        public IActionResult ApplicationLaunchURL()
+        {
+            var employess = _employeeService.GetAllEmployees();
+
+            if (employess != null && employess.Count > 0)
+            {
+                return Ok("Success - Application up and running");
+            }
+            else 
+            {
+                return Ok("Warning - Application connection failed");
+            }
+        }
+        #endregion
     }
 }
