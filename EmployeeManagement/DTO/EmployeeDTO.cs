@@ -13,6 +13,7 @@ namespace EmployeeManagement.DTO
         public int? DepartmentId { get; set; }
         public string Department { get; set; }
         public string Dob { get; set; }
+        public DateTime UserTimeZone { get; set; }
 
     }
 }

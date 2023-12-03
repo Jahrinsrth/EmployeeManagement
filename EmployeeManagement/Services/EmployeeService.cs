@@ -1,9 +1,11 @@
 ﻿using EmployeeManagement.DTO;
 using EmployeeManagement.Entities;
 using EmployeeManagement.Repositories;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EmployeeManagement.BuildingBlocks;
 
 namespace EmployeeManagement.Services
 {
@@ -36,6 +38,7 @@ namespace EmployeeManagement.Services
                     employeeDTO.DepartmentId = entity.Department.DepartmentId;
                     employeeDTO.Department = entity.Department.DepartmentName;
                     employeeDTO.DatetOfBirth = entity.DateOfBirth;
+                    employeeDTO.UserTimeZone = DateTime.UtcNow.ConvertToEST();
 
                     employeeDTOs.Add(employeeDTO);
                 }
