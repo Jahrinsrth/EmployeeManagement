@@ -6,21 +6,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EmployeeManagement.BuildingBlocks;
+using Microsoft.Extensions.Logging;
 
 namespace EmployeeManagement.Services
 {
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger<EmployeeService> _logger;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository, ILogger<EmployeeService> logger)
         {
             _employeeRepository = employeeRepository;
+            _logger = logger;
         }
 
         public List<EmployeeDTO> GetAllEmployees()
         {
             List<Employee> employees = _employeeRepository.GetAllEmployees().ToList();
+
+            _logger.LogInformation("Retrieving data from DB for EmployeeService");
 
             List<EmployeeDTO> employeeDTOs = new List<EmployeeDTO>();
 

@@ -2,6 +2,7 @@
 using EmployeeManagement.Entities;
 using EmployeeManagement.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace EmployeeManagement.Controllers
@@ -11,9 +12,11 @@ namespace EmployeeManagement.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService)
+        private readonly ILogger<EmployeeController> _logger;
+        public EmployeeController(IEmployeeService employeeService, ILogger<EmployeeController> logger)
         {
             _employeeService = employeeService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -114,14 +117,17 @@ namespace EmployeeManagement.Controllers
         [Route("application")]
         public IActionResult ApplicationLaunchURL()
         {
+            _logger.LogInformation("Application started");
             var employess = _employeeService.GetAllEmployees();
 
             if (employess != null && employess.Count > 0)
             {
+                _logger.LogInformation("data  fetched for Employee controller");
                 return Ok("Success - Application up and running");
             }
             else 
             {
+                _logger.LogError("Application failed to start");
                 return Ok("Warning - Application connection failed");
             }
         }
